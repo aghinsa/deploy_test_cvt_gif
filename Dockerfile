@@ -1,20 +1,33 @@
-# usage
-# docker run -d aghinsa/deploy_test_cvt_gif
-FROM alpine
+# Usage
+# docker build -t $USER/ffmpeg .
+# docker run --rm -ti -p 8080:8080 $USER/ffmpeg -mc-config deploy -insecure -log debug
+#
+# curl -v --request POST --data-binary @input.mp4 http://localhost:8080/ffmpeg -o output.gif
+FROM ubuntu:20.04
 
-RUN apk --no-cache add musl-dev python3-dev python3 gcc ffmpeg && \
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+  apt-get install -y \
+    gcc \
+    python3-dev \
+    python3-pip \
+    python3 \
+    ca-certificates \
+    ffmpeg && \
   python3 -m pip install -U pip && \
   python3 -m pip install dffml-service-http && \
   python3 -m pip install dffml-config-yaml && \
-  apk del musl-dev python3-dev gcc
+  apt-get purge -y \
+    gcc \
+    python3-dev && \
+  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
+COPY ./dffml /usr/src/dffml
 COPY . /usr/src/app
 
-RUN python3 -m pip install -e .
+RUN python3 -m pip install -e . && \
+  python3 -m pip install -U -e /usr/src/dffml -e /usr/src/dffml/service/http
 
-EXPOSE 8080
-
-ENTRYPOINT ["python3", "-m", "dffml", "service", "http","server","-addr", "0.0.0.0","-insecure"]
+ENTRYPOINT ["python3", "-m", "dffml", "service", "http", "server", "-addr", "0.0.0.0"]
 CMD ["-mc-config", "deploy"]
-
