@@ -1,0 +1,16 @@
+running test
+Searching for httptest>=0.0.15
+Best match: httptest 0.0.15
+Processing httptest-0.0.15-py3.7.egg
+
+Using /home/aghinsa/Documents/workspace/prep/global/dffml/.eggs/httptest-0.0.15-py3.7.egg
+running egg_info
+writing dffml.egg-info/PKG-INFO
+writing dependency_links to dffml.egg-info/dependency_links.txt
+writing entry points to dffml.egg-info/entry_points.txt
+writing requirements to dffml.egg-info/requires.txt
+writing top-level names to dffml.egg-info/top_level.txt
+reading manifest file 'dffml.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'dffml.egg-info/SOURCES.txt'
+running build_ext

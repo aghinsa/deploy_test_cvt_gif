@@ -1,6 +1,6 @@
 # Usage
-# docker build -t $USER/ffmpeg .
-# docker run --rm -ti -p 8080:8080 $USER/ffmpeg -mc-config deploy -insecure -log debug
+# docker build -t aghinsa/deploy_test_cvt_gif .
+# docker run --rm -ti -p 8080:8080 aghinsa/deploy_test_cvt_gif -mc-config deploy -insecure -log debug
 #
 # curl -v --request POST --data-binary @input.mp4 http://localhost:8080/ffmpeg -o output.gif
 FROM ubuntu:20.04

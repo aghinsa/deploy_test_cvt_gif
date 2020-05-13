@@ -18,6 +18,5 @@ wheelhouse/
 *.modeldir
 *.db
 htmlcov/
-dffml/
 *.mp4
 *.gif
